@@ -1,0 +1,103 @@
+package exerciciopratico;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+/**
+ *
+ * @author kchur
+ */
+
+public class exerciciopratico extends JFrame implements ActionListener {
+JLabel lbllarg, lblcompr, lblprof, lblresult;
+JTextField txtlarg, txtcompr, txtprof, txtresult;
+JButton btncalcular, btnlimpar;
+  
+    public static void main(String[] args) {
+        // TODO code application logic here
+        JFrame janela = new exerciciopratico();
+        { janela.setUndecorated(true);
+        janela.getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
+        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        janela.setVisible(true);
+        } 
+    }
+     exerciciopratico()
+     {
+         setTitle("Calculo para a piscina");
+         setBounds(260,90,350,90);
+         getContentPane().setBackground(new Color(135,206,235));
+         getContentPane().setLayout(new GridLayout(5,2));
+         
+         //
+         
+         lbllarg = new JLabel("Digite a largura em metros:");
+         lbllarg.setForeground(Color.BLACK);
+         lbllarg.setFont(new Font (" ",Font.ITALIC, 16));
+         lblcompr = new JLabel("Digite o comprimento em metros:");
+         lblcompr.setForeground(Color.BLACK);
+         lblcompr.setFont(new Font (" ",Font.ITALIC, 16));
+         lblprof = new JLabel("Digite a profundidade em metros:");
+         lblprof.setForeground(Color.BLACK);
+         lblprof.setFont(new Font (" ",Font.ITALIC, 16));
+         lblresult = new JLabel("Custo da obra:");
+         lblresult.setForeground(Color.BLACK);
+         lblresult.setFont(new Font (" ",Font.BOLD, 14));
+         
+         //
+         
+        btncalcular = new JButton("Calcular"); btncalcular.addActionListener(this);
+        btnlimpar = new JButton("Limpar"); btnlimpar.addActionListener(this);
+        
+        //
+        
+        txtlarg = new JTextField();
+        txtcompr = new JTextField();
+        txtprof = new JTextField();
+        txtresult = new JTextField();
+        txtresult.setEditable(false);
+        
+        //
+        
+        getContentPane().add(lbllarg); getContentPane().add(txtlarg);
+        
+        getContentPane().add(lblcompr); getContentPane().add(txtcompr);
+        
+        getContentPane().add(lblprof); getContentPane().add(txtprof);
+        
+        getContentPane().add(lblresult); getContentPane().add(txtresult);
+        
+        getContentPane().add(btncalcular);  getContentPane().add(btnlimpar); 
+     }
+     
+
+     public void actionPerformed(ActionEvent e)
+     {
+         if(e.getSource()==btnlimpar)
+         {      
+         txtlarg.setText("");
+         txtcompr.setText("");
+         txtprof.setText("");
+         txtresult.setText("");
+         return;
+     }
+     double larg=0, compr=0, prof=0, result=0;
+     try
+     {
+     larg = Double.parseDouble(txtlarg.getText());
+     compr = Double.parseDouble(txtcompr.getText());
+     prof = Double.parseDouble(txtprof.getText());
+     }
+     catch(NumberFormatException erro)
+     {
+      txtresult.setText("Só números");
+      return;
+     }
+      if(e.getSource() == btncalcular)
+        {
+            result = (larg*compr*prof)*300;
+            txtresult.setText("" + result);
+        }
+    }
+}
+
